@@ -29,3 +29,23 @@ jobs:
       with:
         name: apk
         path: bin/*.apk
+
+        - name: Install Android SDK tools
+  run: |
+    sudo apt update
+    sudo apt install -y wget unzip openjdk-17-jdk
+
+    mkdir -p $HOME/android-sdk
+    cd $HOME/android-sdk
+
+    wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+    unzip commandlinetools-linux-*.zip
+
+    mkdir -p cmdline-tools/latest
+    mv cmdline-tools/* cmdline-tools/latest/ 2>/dev/null || true
+
+    export ANDROID_HOME=$HOME/android-sdk
+    export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
+
+    yes | sdkmanager --licenses
+    sdkmanager "platform-tools" "platforms;android-33" "build-tools;33.0.2"
