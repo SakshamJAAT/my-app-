@@ -70,5 +70,5 @@ export default async function handler(req, res) {
   await dailyRef.set({ date: todayIST() });
 
   return res.status(200).json({ success: true, message: 'OTP v
-    erified!' });
-                      }
+erified!' });
+}
