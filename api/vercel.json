@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/cashfree.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
+}
